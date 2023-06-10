@@ -1,1 +1,109 @@
+Create Player class (abstract)
+  Player object
+  Contains disc (shape and colour), name
+  
+Create Human Player class (inherited from Player class)
+  HP uses keyboard to choose a column to place their token
+
+Create Computer Player class (inherited from Player class)
+  Uses AI algorithm to determine best move and places token automatically
+
+Create Board class
+  Maintains/keeps track of the board
+  Keeps track of players
+  Places tokens and checks for a win condition
+    win condition is 4 matching horizontal, vertical or diagonal discs in a row
+    
+Create Controller class
+  Creates instances of Player class and Communication class
+  Manages flow of the game, user input
+  Coordinates interaction between other classes
+  
+Create Console/Communication class
+  Displays the game
+  Prompts for user input
+  prints messages and game updates
+  
+  
+  
+  
+  
+  
+  // Controller.cs
+class Controller
+{
+    private Board board;
+    private HumanPlayer humanPlayer;
+    private ComputerPlayer computerPlayer;
+    private Communication comm;
+
+    public Board()
+    {
+        board = new Board();
+        humanPlayer = new HumanPlayer();
+        computerPlayer = new ComputerPlayer();
+        comm = new Communication();
+    }
+
+    public void GamePlay()
+    {
+        // Game logic
+    }
+}
+
+// Board.cs
+class Board
+{
+   private const int rows = 6;
+   private const int columns = 7;
+   private int[,] board; 
+   private char currentPlayer;
+   
+   public Board()
+   {
+      board = new int[rows,columns];
+      currentPlayer = 'X';
+   }
+   
+   
+   -- is column full?
+   -- is board full?
+   -- check for win
+      -- horizontal
+      -- vertical
+      -- diagonal
+   -- make move
+   
+   
+   //private int FreeTiles free;
+   //private int CurrentPlayer current;
+    // Board implementation
+}
+
+// Player.cs
+public abstract class Player
+{
+    private string Name name;
+    private string Colour colour;
+    private char Team team;
+    // Common player properties and methods go here
+}
+
+// HumanPlayer.cs
+class HumanPlayer : Player
+{
+    // Human player implementation goes here
+}
+
+// ComputerPlayer.cs
+class ComputerPlayer : Player
+{
+    // Computer player implementation goes here
+}
+
+// Communication.cs
+class Communication
+{
+    // Console communication methods go here
+}
 
