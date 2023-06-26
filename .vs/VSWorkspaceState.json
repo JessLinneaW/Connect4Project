@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Program",
+    "\\Program\\Individual Classes"
   ],
-  "SelectedNode": "\\C:\\Users\\jesswilkinson\\Source\\Repos\\JessLinneaW\\Connect4Project",
+  "SelectedNode": "\\Program\\Connect4 Game.cs",
   "PreviewInSolutionExplorer": false
 }

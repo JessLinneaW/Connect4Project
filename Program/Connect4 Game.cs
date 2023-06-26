@@ -251,6 +251,7 @@ public class Connect4Game
             {
                 board.PrintBoard();
 
+                Console.WriteLine("\nPick a column from 1-7.");
                 int column = ReadColumnChoice();
                 while (board.ColumnFull(column - 1))
                 {
@@ -333,9 +334,9 @@ public class Connect4Game
     private int ReadPlayerNumber()
     {
         int numPlayers;
-        while (!int.TryParse(Console.ReadLine(), out numPlayers) || numPlayers < 0)
+        while (!int.TryParse(Console.ReadLine(), out numPlayers) || numPlayers < 0 || numPlayers > 2)
         {
-            Console.WriteLine("Invalid input. Please enter a valid number of players:");
+            Console.WriteLine("Invalid input. Please enter a valid number of players (0-2):");
         }
         return numPlayers;
     }
@@ -352,7 +353,7 @@ public class Connect4Game
     }
 }
 
-public class Program
+public class Game
 {
     public static void Main(string[] args)
     {
@@ -360,3 +361,4 @@ public class Program
         game.StartGame();
     }
 }
+
