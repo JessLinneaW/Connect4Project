@@ -27,9 +27,7 @@ public abstract class Player : IComparable<Player>
 
     //This method is overriden by the GetPlayerName methods from the NamedPlayer and UnnamedPlayer classes.
 
-    public abstract string GetPlayerName()
-    {
-    };
+    public abstract string GetPlayerName();
 }
 
 public class NamedPlayer : Player
@@ -298,7 +296,7 @@ public class Connect4Game
             {
                 board.PrintBoard();
 
-                
+
                 int column = ReadColumnChoice();
                 while (board.ColumnFull(column - 1))
                 {
