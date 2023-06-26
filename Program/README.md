@@ -1,7 +1,7 @@
 # Connect4Project
 
 
-The completed game program is contained in the Connect 4 Game.cs file above this ReadMe.md file.
+The completed game program is contained in the Connect 4 Game.cs file directly above this ReadMe.md file, in the main Program file.
 
 Steps in Gameplay:
 
