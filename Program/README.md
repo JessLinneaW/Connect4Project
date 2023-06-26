@@ -2,6 +2,7 @@
 
 
 The completed game program is contained in the Connect 4 Game.cs file above this ReadMe.md file.
+
 Steps in Gameplay:
 
 1. User enters how many named players they would like participating in the game.
