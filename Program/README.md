@@ -5,8 +5,6 @@ The completed game program is contained in the Connect 4 Game.cs file directly a
 
 The Individual Classes file within the main Program file contains individual files for each class in the Connect 4 Game program. These files do not contain notes.
 
-
-
 Steps in Gameplay:
 
 1. User enters how many named players they would like participating in the game.
