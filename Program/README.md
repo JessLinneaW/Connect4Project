@@ -1,8 +1,9 @@
 # Connect4Project
 
 
-The completed game program is contained in the Connect 4 Game.cs file directly above this ReadMe.md file, in the main Program file.
-The Individual Classes file within the main Program file contains individual files for each class in the Connect 4 Game program.
+The completed game program is contained in the Connect 4 Game.cs file directly above this ReadMe.md file, in the main Program file. This file contains detailed comments for each class and method.
+
+The Individual Classes file within the main Program file contains individual files for each class in the Connect 4 Game program. These files do not contain notes.
 
 Steps in Gameplay:
 
