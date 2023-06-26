@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public abstract class Player : IComparable<Player>
 {
+    //This class creates a generic player that has a team symbol attribute and a team colour attribute.
+    //The class is abstract and therefore must be overridden by its child classes: NamedPlayer and UnnamedPlayer.
     public char Symbol { get; }
     public string TeamColor { get; }
 
@@ -16,16 +18,24 @@ public abstract class Player : IComparable<Player>
     {
     }
 
+    //This method is used to compare the NamedPlayer and UnnamedPlayer "names" to each other.
+
     public int CompareTo(Player other)
     {
         return string.Compare(GetPlayerName(), other.GetPlayerName());
     }
 
-    public abstract string GetPlayerName();
+    //This method is overriden by the GetPlayerName methods from the NamedPlayer and UnnamedPlayer classes.
+
+    public abstract string GetPlayerName()
+    {
+    };
 }
 
 public class NamedPlayer : Player
 {
+    //This class creates a NamedPlayer object, and is a child of the Player superclass.
+    //Along with overriding the symbol and colour variables from the Player class, a NamedPlayer object also contains a name attribute.
     public string Name { get; }
 
     public NamedPlayer(string name, char symbol, string teamColor)
@@ -33,6 +43,8 @@ public class NamedPlayer : Player
     {
         Name = name;
     }
+
+    //This method overrides the GetPlayerName method related to the IComparable interface in the Player class.
 
     public override string GetPlayerName()
     {
@@ -42,6 +54,8 @@ public class NamedPlayer : Player
 
 public class UnnamedPlayer : Player
 {
+    //This class creates a UnnamedPlayer object, and is a child of the Player superclass.
+    //Along with overriding the symbol and colour variables from the Player class, an UnnamedPlayer object also contains a number attribute.
     public int Number { get; }
 
     public UnnamedPlayer(int number, char symbol, string teamColor)
@@ -49,6 +63,8 @@ public class UnnamedPlayer : Player
     {
         Number = number;
     }
+
+    //This method overrides the GetPlayerName method related to the IComparable interface in the Player class.
 
     public override string GetPlayerName()
     {
@@ -59,6 +75,9 @@ public class UnnamedPlayer : Player
 
 public class Board
 {
+    //This class creates the structure of the gameboard and determines how players execute moves.
+    //It is also responsible for checking for the following: a win, a full column and a full board.
+
     private const int numRows = 6;
     private const int numColumns = 7;
     private char[,] board;
@@ -71,6 +90,8 @@ public class Board
         currentPlayer = players[0];
     }
 
+    //This method correctly formats the rows and columns of any given board.
+
     private void InitializeBoard()
     {
         for (int row = 0; row < numRows; row++)
@@ -82,10 +103,15 @@ public class Board
         }
     }
 
+    //This method checks if there are any available spaces left in the chossen column.
+
     public bool ColumnFull(int column)
     {
         return board[0, column] != ' ';
     }
+
+    //This method correctly places the player's disk on the board.
+    //It then checks for a possible win, and if no win has occured it switches the currentPlayer for the next turn.
 
     public void Move(int column, ref List<Player> players)
     {
@@ -104,11 +130,14 @@ public class Board
         }
     }
 
+    //This method accesses the other check for win methods to see if any of the 3 possible wins have occurred.
 
     public bool CheckForWin()
     {
         return HorizontalWin() || VerticalWin() || DiagonalWin();
     }
+
+    //This method check the disks on the board for a horizontal win.
 
     private bool HorizontalWin()
     {
@@ -128,6 +157,8 @@ public class Board
         return false;
     }
 
+    //This method check the disks on the board for a vertical win.
+
     private bool VerticalWin()
     {
         for (int row = 0; row <= numRows - 4; row++)
@@ -145,6 +176,8 @@ public class Board
         }
         return false;
     }
+
+    //This method check the disks on the board for a diagonal win.
 
     private bool DiagonalWin()
     {
@@ -179,12 +212,16 @@ public class Board
         return false;
     }
 
+    //This method switches between the 2 players.
+
     private Player GetNextPlayer(ref List<Player> players)
     {
         int currentPlayerIndex = players.IndexOf(currentPlayer);
         int nextPlayerIndex = (currentPlayerIndex + 1) % players.Count;
         return players[nextPlayerIndex];
     }
+
+    //This method creates the scructure of the board itself.
 
     public void PrintBoard()
     {
@@ -205,7 +242,10 @@ public class Board
         Console.WriteLine("  1   2   3   4   5   6   7");
         Console.WriteLine();
         Console.WriteLine($"Current Player: {GetCurrentPlayerName()}");
+        Console.WriteLine("\nPick a column from 1-7.");
     }
+
+    //This method ensures that the correct player is selected for turns and record keeping. 
 
     public string GetCurrentPlayerName()
     {
@@ -223,6 +263,8 @@ public class Board
         }
     }
 
+    //This method check whether the board has any available spaces left.
+
     public bool IsBoardFull()
     {
         for (int column = 0; column < numColumns; column++)
@@ -238,8 +280,13 @@ public class Board
 
 public class Connect4Game
 {
+    //This class is where the actual game is player. It begins by creating a new game, where the user has to ability to choose players.
+    //The players are then prompted to make moves, within certain perameters. If these perameters are violated, this class communicated that.
+
     private Board board;
     private List<Player> players;
+
+    //This method is accessed directly from the Main method and contains all necessary content, including method calls, for the game to take place.
 
     public void StartGame()
     {
@@ -251,7 +298,7 @@ public class Connect4Game
             {
                 board.PrintBoard();
 
-                Console.WriteLine("\nPick a column from 1-7.");
+                
                 int column = ReadColumnChoice();
                 while (board.ColumnFull(column - 1))
                 {
@@ -282,6 +329,8 @@ public class Connect4Game
         } while (playAgain);
     }
 
+    //This method creates a new game by first creating players then a clear board where gameplay takes place.
+
     private void InitializeGame()
     {
         players = new List<Player>();
@@ -304,6 +353,8 @@ public class Connect4Game
 
         board = new Board(players);
     }
+
+    //These 2 methods are responsible for automatically assigning players with the appropriate symbol and colour.
 
     private char GetSymbolForPlayer(int playerNumber)
     {
@@ -329,7 +380,7 @@ public class Connect4Game
         }
     }
 
-
+    //This method ensures the user enters a maximum of 2 possible players.
 
     private int ReadPlayerNumber()
     {
@@ -341,6 +392,7 @@ public class Connect4Game
         return numPlayers;
     }
 
+    //This method ensures the user is only able to choose a column between 1 and 7.
 
     private int ReadColumnChoice()
     {
@@ -355,6 +407,8 @@ public class Connect4Game
 
 public class Game
 {
+    //This class contains the main method which is only responsoble for creating a new Connect4Game object and initiating game play.
+    //The user is immediately sent to the Commect4Game class to play the game.
     public static void Main(string[] args)
     {
         Connect4Game game = new Connect4Game();
