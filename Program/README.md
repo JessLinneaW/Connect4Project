@@ -2,6 +2,7 @@
 
 
 The completed game program is contained in the Connect 4 Game.cs file directly above this ReadMe.md file, in the main Program file.
+The Individual Classes file within the main Program file contains individual files for each class in the Connect 4 Game program.
 
 Steps in Gameplay:
 
